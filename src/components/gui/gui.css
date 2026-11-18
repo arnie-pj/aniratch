@@ -241,9 +241,9 @@
     left: 0;
     right: 0;
     z-index: $z-index-extension-button;
-    background: $looks-secondary;
+    background: var(--accent2);
 
-    border: 1px solid $looks-secondary;
+    border: 1px solid var(--accent2);
     box-sizing: content-box; /* To match scratch-block vertical toolbox borders */
 }
 
@@ -273,7 +273,7 @@ $fade-out-distance: 15px;
 .extension-button-icon {
     width: 1.75rem;
     height: 1.75rem;
-    filter: var(--looks-secondary-icon-filter);
+    filter: var(--accent2-icon-filter);
 }
 
 [dir="rtl"] .extension-button-icon {

@@ -24,7 +24,9 @@ const guiColors = {
 
     // 上部のバー: 黒地に、公式サイトの帯を思わせる黄色の線を下に引く
     'menu-bar-background': BLACK,
-    'menu-bar-background-image': `linear-gradient(to top, ${YELLOW} 0, ${YELLOW} 3px, transparent 3px)`,
+    // 公式サイトの「黄色の帯＋水色の帯」に合わせ、下端に水色、その上に黄色の線を引く
+    'menu-bar-background-image': `linear-gradient(to top, ${CYAN} 0, ${CYAN} 3px, ${YELLOW} 3px, ${YELLOW} 6px, transparent 6px)`,
+    'menu-bar-item-hover': '#66ccff33',
     'menu-bar-foreground': '#F0F0F0',
 
     // 黄色の上に白文字だと読めないので、黄色地の見出しは黒文字にする
@@ -33,6 +35,12 @@ const guiColors = {
 
     'looks-secondary-foreground': BLACK,
     'looks-secondary-icon-filter': 'brightness(0)',
+
+    // 2つめのアクセント（水色）: 拡張機能ボタン、絞り込みバー、入力欄のラベル、ホバーなど
+    'accent2': CYAN,
+    'accent2-icon-filter': 'brightness(0)',
+    'accent2-transparent': '#66ccff26',
+    'input-label-color': CYAN,
 
     'link-color': CYAN
 };

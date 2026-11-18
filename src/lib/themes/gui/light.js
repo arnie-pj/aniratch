@@ -62,6 +62,12 @@ const guiColors = {
     // Aniratch: looks-secondary の上に乗せる文字色とアイコンの色（黄色アクセントでは黒にする）
     'looks-secondary-foreground': '#ffffff',
     'looks-secondary-icon-filter': 'none',
+    // Aniratch: 2つめのアクセント（アニーでは水色）と、その使いどころ
+    'accent2': 'var(--looks-secondary)',
+    'accent2-icon-filter': 'var(--looks-secondary-icon-filter)',
+    'accent2-transparent': 'var(--looks-transparent)',
+    'menu-bar-item-hover': 'var(--ui-black-transparent)',
+    'input-label-color': 'inherit',
 
     'assets-background': '#ffffff',
 
