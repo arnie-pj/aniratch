@@ -53,9 +53,21 @@ import twIcon from './tw/tw.svg';
 import customExtensionIcon from './custom/custom.svg';
 import returnIcon from './custom/return.svg';
 import galleryIcon from './gallery/gallery.svg';
+import onecommeIconURL from './onecomme/onecomme.png';
+import onecommeInsetIconURL from './onecomme/onecomme-small.png';
 import {APP_NAME} from '../../brand';
+import {ONECOMME_EXTENSION_URL} from '../../aniratch-extensions';
 
 export default [
+    {
+        name: 'わんコメ',
+        extensionId: 'onecomme',
+        extensionURL: ONECOMME_EXTENSION_URL,
+        iconURL: onecommeIconURL,
+        insetIconURL: onecommeInsetIconURL,
+        description: 'わんコメにつないで、リスナーさんの名前・コメント・スパチャ・アイコンを受け取ります。',
+        featured: true
+    },
     {
         name: (
             <FormattedMessage

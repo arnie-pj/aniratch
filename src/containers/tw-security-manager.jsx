@@ -6,6 +6,7 @@ import bindAll from 'lodash.bindall';
 import SecurityManagerModal from '../components/tw-security-manager-modal/security-manager-modal.jsx';
 import SecurityModals from '../lib/tw-security-manager-constants';
 import {getPersistedUnsandboxed, setPersistedUnsandboxed} from '../lib/tw-persisted-unsandboxed.js';
+import {isAniratchExtension} from '../lib/aniratch-extensions';
 
 /* eslint-disable require-atomic-updates */
 
@@ -29,6 +30,9 @@ const isTrustedExtension = url => (
 
     // For development.
     url.startsWith('http://localhost:8000/') ||
+
+    // Aniratch に同梱している拡張（テスト版・公開版・このページ自身）
+    isAniratchExtension(url) ||
 
     extensionsTrustedByUser.has(url)
 );
