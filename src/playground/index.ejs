@@ -5,9 +5,17 @@
     <% if (String(htmlWebpackPlugin.options.root).startsWith('/templates/')) { %>
       <script>
         // Aniratch（わんコメのテンプレート版）: ファイルとして直接開かれたら、わんコメが配信している URL へ移る
-        if (location.protocol === 'file:') {
-          location.replace('http://localhost:11180<%= htmlWebpackPlugin.options.root %>' + (location.pathname.split('/').pop() || 'index.html') + location.search + location.hash);
-        }
+        (function () {
+          var page = location.pathname.split('/').pop() || 'index.html';
+          // トップ（index.html）はエディタで開く
+          var openEditor = page === 'index.html' && !location.hash;
+          if (openEditor) page = 'editor.html';
+          if (location.protocol === 'file:') {
+            location.replace('http://localhost:11180<%= htmlWebpackPlugin.options.root %>' + page + location.search + location.hash);
+          } else if (openEditor) {
+            location.replace('<%= htmlWebpackPlugin.options.root %>' + page + location.search);
+          }
+        })();
       </script>
     <% } %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
