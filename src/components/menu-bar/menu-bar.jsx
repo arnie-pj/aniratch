@@ -97,6 +97,7 @@ import addonsIcon from './addons.svg';
 import errorIcon from './tw-error.svg';
 import advancedIcon from './tw-advanced.svg';
 
+import aniratchLogo from './aniratch-logo.png';
 import ninetiesLogo from './nineties_logo.svg';
 import catLogo from './cat_logo.svg';
 import prehistoricLogo from './prehistoric-logo.svg';
@@ -492,6 +493,14 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     <div className={styles.fileGroup}>
+                        <div className={classNames(styles.menuBarItem, styles.aniratchLogoItem)}>
+                            <img
+                                className={styles.aniratchLogo}
+                                src={aniratchLogo}
+                                alt="Aniratch"
+                                draggable={false}
+                            />
+                        </div>
                         {this.props.errors.length > 0 && <div>
                             <MenuLabel
                                 open={this.props.errorsMenuOpen}

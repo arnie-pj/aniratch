@@ -51,7 +51,7 @@ const projectData = translateFunction => {
             },
             {
                 isStage: false,
-                name: translator(messages.sprite, {index: 1}),
+                name: 'あにぺん',
                 variables: {},
                 lists: {},
                 broadcasts: {},
@@ -60,13 +60,22 @@ const projectData = translateFunction => {
                 currentCostume: 0,
                 costumes: [
                     {
-                        assetId: '927d672925e7b99f7813735c484c6922',
-                        name: translator(messages.costume, {index: 1}),
-                        bitmapResolution: 1,
-                        md5ext: '927d672925e7b99f7813735c484c6922.svg',
-                        dataFormat: 'svg',
-                        rotationCenterX: 30.74937882782359,
-                        rotationCenterY: 58.864768144346826
+                        assetId: '05ef62f7b711744f82fb18eec3c830ce',
+                        name: 'あにぺん1',
+                        bitmapResolution: 2,
+                        md5ext: '05ef62f7b711744f82fb18eec3c830ce.png',
+                        dataFormat: 'png',
+                        rotationCenterX: 100,
+                        rotationCenterY: 100
+                    },
+                    {
+                        assetId: '03e79bc04c23d1d89c4fb05b5331ffe6',
+                        name: 'あにぺん2',
+                        bitmapResolution: 2,
+                        md5ext: '03e79bc04c23d1d89c4fb05b5331ffe6.png',
+                        dataFormat: 'png',
+                        rotationCenterX: 100,
+                        rotationCenterY: 100
                     }
                 ],
                 sounds: [],

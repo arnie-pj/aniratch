@@ -45,6 +45,15 @@
 .inactive {
     opacity: 0;
 }
+.aniratch-logo-item {
+    padding: 0 0.5rem 0 0.25rem;
+}
+
+.aniratch-logo {
+    height: 2.25rem;
+    vertical-align: middle;
+}
+
 .scratch-logo {
     height:  1.6rem;
     vertical-align: middle;
