@@ -13,10 +13,8 @@ const systemPreferencesTheme = () => {
     if (PREFERS_HIGH_CONTRAST_QUERY && PREFERS_HIGH_CONTRAST_QUERY.matches) {
         return Theme.highContrast;
     }
-    if (PREFERS_DARK_QUERY && PREFERS_DARK_QUERY.matches) {
-        return Theme.dark;
-    }
-    return Theme.light;
+    // Aniratch は公式サイトに合わせて、OS の設定にかかわらず最初はダークで表示する
+    return Theme.dark;
 };
 
 /**

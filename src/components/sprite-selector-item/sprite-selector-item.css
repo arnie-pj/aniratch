@@ -89,7 +89,7 @@
 
 .is-selected .sprite-info {
     background: $looks-secondary;
-    color: #ffffff;
+    color: var(--looks-secondary-foreground);
 }
 
 .delete-button {

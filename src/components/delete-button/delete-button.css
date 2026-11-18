@@ -29,6 +29,7 @@
 }
 
 .delete-icon {
+    filter: var(--looks-secondary-icon-filter);
     position: relative;
     margin: 0.25rem;
     user-select: none;

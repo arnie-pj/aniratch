@@ -59,6 +59,10 @@ const guiColors = {
     'menu-bar-background-image': 'none',
     'menu-bar-foreground': '#ffffff',
 
+    // Aniratch: looks-secondary の上に乗せる文字色とアイコンの色（黄色アクセントでは黒にする）
+    'looks-secondary-foreground': '#ffffff',
+    'looks-secondary-icon-filter': 'none',
+
     'assets-background': '#ffffff',
 
     'input-background': '#ffffff',

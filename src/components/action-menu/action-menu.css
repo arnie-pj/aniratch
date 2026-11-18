@@ -25,6 +25,10 @@ $more-button-size: 2.25rem;
     transition: background-color 0.2s;
 }
 
+.button img {
+    filter: var(--looks-secondary-icon-filter);
+}
+
 button::-moz-focus-inner {
     border: 0;
 }
