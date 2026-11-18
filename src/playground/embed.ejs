@@ -28,8 +28,9 @@
         height: 100%;
         top: 0;
         left: 0;
-        background-color: #ff4c4c;
-        color: white;
+        background-color: #0D0D0D;
+        color: #F0F0F0;
+        gap: 12px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -40,19 +41,45 @@
       .splash-screen[hidden] {
         display: none;
       }
-      .splash-spinner:after {
-        content: " ";
-        display: block;
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        border: 6px solid;
-        border-color: white transparent white transparent;
-        animation: splash-spinner 1.2s linear infinite;
+      /* Aniratch: 公式サイト風のロード表示を、小さい埋め込み枠に収まる大きさで */
+      .ani-text {
+        font-family: 'Oswald', 'Bahnschrift', 'Arial Narrow', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: #fff;
       }
-      @keyframes splash-spinner {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      .ani-text::before { content: '>'; margin-right: 0.35em; font-family: 'M PLUS 1 Code', Consolas, monospace; color: #66CCFF; }
+      .ani-text::after {
+        content: '';
+        display: inline-block;
+        width: 0.5em;
+        height: 0.85em;
+        margin-left: 0.25em;
+        vertical-align: -0.04em;
+        background: #FFF600;
+        animation: ani-cursor 1.1s steps(2, jump-none) infinite;
+      }
+      .ani-bar {
+        position: relative;
+        width: min(240px, 70%);
+        height: 10px;
+        padding: 2px;
+        border: 2px solid #FFF600;
+      }
+      .ani-bar i {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 10px;
+        height: 10px;
+        background: #FFF600;
+        animation: ani-slide 1.4s ease-in-out infinite alternate;
+      }
+      @keyframes ani-cursor { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes ani-slide { from { left: 2px; } to { left: calc(100% - 12px); } }
+      @media (prefers-reduced-motion: reduce) {
+        .ani-text::after, .ani-bar i { animation: none; }
       }
     </style>
   </head>
@@ -64,7 +91,8 @@
     </noscript>
 
     <div class="splash-screen" hidden id="splash-need-js">
-      <div class="splash-spinner"></div>
+      <div class="ani-text">LOADING</div>
+      <div class="ani-bar" aria-hidden="true"><i></i></div>
     </div>
 
     <script>
