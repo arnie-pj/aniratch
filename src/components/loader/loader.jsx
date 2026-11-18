@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import bindAll from 'lodash.bindall';
 import styles from './loader.css';
 import {getIsLoadingWithId} from '../../reducers/project-state';
-import topBlock from './top-block.svg';
-import middleBlock from './middle-block.svg';
-import bottomBlock from './bottom-block.svg';
+import aniratchLogo from './aniratch-logo.png';
 
 const mainMessages = {
     'gui.loader.headline': (
@@ -112,40 +110,37 @@ class LoaderComponent extends React.Component {
                     [styles.fullscreen]: this.props.isFullScreen
                 })}
             >
-                <div className={styles.container}>
-                    <div className={styles.blockAnimation}>
-                        <img
-                            className={styles.topBlock}
-                            src={topBlock}
-                            draggable={false}
-                        />
-                        <img
-                            className={styles.middleBlock}
-                            src={middleBlock}
-                            draggable={false}
-                        />
-                        <img
-                            className={styles.bottomBlock}
-                            src={bottomBlock}
-                            draggable={false}
-                        />
+                {/* Aniratch: アニー・イールド公式サイトのロード画面に合わせた枠（ロゴだけ Aniratch） */}
+                <div className={styles.frame}>
+                    <img
+                        className={styles.logo}
+                        src={aniratchLogo}
+                        alt="Aniratch"
+                        draggable={false}
+                    />
+                    <div className={styles.loadingText}>{'LOADING'}</div>
+                    <div
+                        className={styles.bar}
+                        aria-hidden="true"
+                    >
+                        <i />
                     </div>
-
                     <div className={styles.title}>
                         {mainMessages[this.props.messageId]}
                     </div>
-
                     <div
                         className={styles.message}
                         ref={this.messageRef}
                     />
-
-                    <div className={styles.barOuter}>
-                        <div
-                            className={styles.barInner}
-                            ref={this.barInnerRef}
-                        />
-                    </div>
+                    {/* 進み具合は表示しないが、元の処理が使うので要素は残す */}
+                    <div
+                        className={styles.hiddenProgress}
+                        ref={this.barInnerRef}
+                    />
+                    <span className={styles.bolt} />
+                    <span className={styles.bolt} />
+                    <span className={styles.bolt} />
+                    <span className={styles.bolt} />
                 </div>
             </div>
         );

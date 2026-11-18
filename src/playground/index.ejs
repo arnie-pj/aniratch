@@ -51,19 +51,85 @@
       .splash-screen > * {
         max-width: 80%;
       }
-      .splash-spinner:after {
-        content: " ";
-        display: block;
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        border: 6px solid;
-        border-color: currentColor transparent currentColor transparent;
-        animation: splash-spinner 1.2s linear infinite;
+      /* Aniratch: アニー・イールド公式サイトのロード画面に合わせた枠（ロゴだけ Aniratch） */
+      .ani-frame {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        box-sizing: border-box;
+        width: min(560px, calc(100% - 64px));
+        max-width: none !important;
+        padding: 44px clamp(20px, 6vw, 56px) 40px;
+        background-color: #141414;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+        background-size: 24px 24px;
+        border: 8px solid #FFF600;
+        border-radius: 4px;
       }
-      @keyframes splash-spinner {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      .ani-bolt {
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        border-radius: 3px;
+        background: radial-gradient(circle, #141414 0 22%, #FFF600 24%);
+      }
+      .ani-bolt:nth-of-type(1) { top: -17px; left: -17px; }
+      .ani-bolt:nth-of-type(2) { top: -17px; right: -17px; }
+      .ani-bolt:nth-of-type(3) { bottom: -17px; left: -17px; }
+      .ani-bolt:nth-of-type(4) { bottom: -17px; right: -17px; }
+      .ani-logo { width: 260px; max-width: 100%; height: auto; }
+      .ani-text {
+        font-family: 'Oswald', 'Bahnschrift', 'Arial Narrow', 'Noto Sans JP', sans-serif;
+        font-size: clamp(1.4rem, 4vw, 1.9rem);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.08em;
+        color: #fff;
+      }
+      .ani-text::before { content: '>'; margin-right: 0.35em; font-family: 'M PLUS 1 Code', Consolas, monospace; color: #66CCFF; }
+      .ani-text::after {
+        content: '';
+        display: inline-block;
+        width: 0.5em;
+        height: 0.85em;
+        margin-left: 0.25em;
+        vertical-align: -0.04em;
+        background: #FFF600;
+        animation: ani-cursor 1.1s steps(2, jump-none) infinite;
+      }
+      .ani-bar {
+        position: relative;
+        width: 100%;
+        height: 14px;
+        padding: 2px;
+        border: 2px solid #FFF600;
+      }
+      /* バーの中の黄色い四角が左右に行き来する */
+      .ani-bar i {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
+        background: #FFF600;
+        animation: ani-slide 1.4s ease-in-out infinite alternate;
+      }
+      @keyframes ani-cursor { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes ani-slide { from { left: 2px; } to { left: calc(100% - 16px); } }
+      @media (max-width: 600px) {
+        .ani-frame { border-width: 5px; }
+        .ani-bolt { width: 18px; height: 18px; }
+        .ani-bolt:nth-of-type(1) { top: -12px; left: -12px; }
+        .ani-bolt:nth-of-type(2) { top: -12px; right: -12px; }
+        .ani-bolt:nth-of-type(3) { bottom: -12px; left: -12px; }
+        .ani-bolt:nth-of-type(4) { bottom: -12px; right: -12px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ani-text::after, .ani-bar i { animation: none; }
       }
       .splash-error-title {
         font-weight: bold;
@@ -102,7 +168,12 @@
     </noscript>
 
     <div class="splash-screen spash-waiting-for-js" hidden>
-      <div class="splash-spinner"></div>
+      <div class="ani-frame">
+        <img class="ani-logo" src="<%= htmlWebpackPlugin.options.root %>images/aniratch-logo.png" alt="Aniratch">
+        <div class="ani-text">LOADING</div>
+        <div class="ani-bar" aria-hidden="true"><i></i></div>
+        <span class="ani-bolt" aria-hidden="true"></span><span class="ani-bolt" aria-hidden="true"></span><span class="ani-bolt" aria-hidden="true"></span><span class="ani-bolt" aria-hidden="true"></span>
+      </div>
 
       <div class="splash-error-title" hidden>Something went wrong. <a href="https://scratch.mit.edu/users/GarboMuffin/#comments" target="_blank" rel="noreferrer">Please report</a> with the information below.</div>
       <div class="splash-errors" hidden></div>
@@ -147,7 +218,10 @@
 
         var splash = document.querySelector('.spash-waiting-for-js');
         splash.setAttribute('data-theme', theme);
-        if (theme !== 'dark') {
+        // Aniratch: ロード画面は公式サイトと同じ黒地で固定する
+        splash.style.backgroundColor = '#0D0D0D';
+        splash.style.color = '#F0F0F0';
+        if (false) {
           <% if (htmlWebpackPlugin.options.isEditor) { %>
             splash.style.backgroundColor = accent;
             splash.style.color = 'white';
