@@ -2,6 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <% if (String(htmlWebpackPlugin.options.root).startsWith('/templates/')) { %>
+      <script>
+        // Aniratch（わんコメのテンプレート版）: ファイルとして直接開かれたら、わんコメが配信している URL へ移る
+        if (location.protocol === 'file:') {
+          location.replace('http://localhost:11180<%= htmlWebpackPlugin.options.root %>' + (location.pathname.split('/').pop() || 'index.html') + location.search + location.hash);
+        }
+      </script>
+    <% } %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
