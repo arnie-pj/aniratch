@@ -184,7 +184,9 @@ module.exports = [
                 'process.env.ENABLE_SERVICE_WORKER': JSON.stringify(process.env.ENABLE_SERVICE_WORKER || ''),
                 'process.env.ROOT': JSON.stringify(root),
                 'process.env.ROUTING_STYLE': JSON.stringify(process.env.ROUTING_STYLE || 'filehash'),
-                'process.env.ENABLE_WINDCHIMES': JSON.stringify(process.env.ENABLE_WINDCHIMES || '')
+                'process.env.ENABLE_WINDCHIMES': JSON.stringify(process.env.ENABLE_WINDCHIMES || ''),
+                // Aniratch: 1 のときだけ、わんコメ連携の拡張を入れる（ローカル用。GitHub Pages 版では入れない）
+                'process.env.ANIRATCH_ONECOMME': JSON.stringify(process.env.ANIRATCH_ONECOMME || '')
             }),
             new HtmlWebpackPlugin({
                 chunks: ['editor'],
@@ -245,7 +247,17 @@ module.exports = [
                         context: 'src/examples'
                     }
                 ]
-            })
+            }),
+            // Aniratch: わんコメ連携の拡張は、ローカル用のビルドのときだけ extensions/ に置く
+            ...(process.env.ANIRATCH_ONECOMME ? [new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: 'onecomme.js',
+                        to: 'extensions',
+                        context: 'aniratch-extensions'
+                    }
+                ]
+            })] : [])
         ])
     })
 ].concat(

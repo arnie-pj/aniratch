@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build:
+    # aniratch-local はわんコメ用のローカル版なので Pages には出さない（template.yml を使う）
+    if: github.event.repository.name != 'aniratch-local'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

@@ -59,15 +59,18 @@ import {APP_NAME} from '../../brand';
 import {ONECOMME_EXTENSION_URL} from '../../aniratch-extensions';
 
 export default [
-    {
-        name: 'わんコメ',
-        extensionId: 'onecomme',
-        extensionURL: ONECOMME_EXTENSION_URL,
-        iconURL: onecommeIconURL,
-        insetIconURL: onecommeInsetIconURL,
-        description: 'わんコメにつないで、リスナーさんの名前・コメント・スパチャ・アイコンを受け取ります。',
-        featured: true
-    },
+    // Aniratch: わんコメ連携はローカル用のビルド（ANIRATCH_ONECOMME=1）のときだけ一覧に出す
+    ...(process.env.ANIRATCH_ONECOMME ? [
+        {
+            name: 'わんコメ',
+            extensionId: 'onecomme',
+            extensionURL: ONECOMME_EXTENSION_URL,
+            iconURL: onecommeIconURL,
+            insetIconURL: onecommeInsetIconURL,
+            description: 'わんコメにつないで、リスナーさんの名前・コメント・スパチャ・アイコンを受け取ります。',
+            featured: true
+        }
+    ] : []),
     {
         name: (
             <FormattedMessage

@@ -1,0 +1,41 @@
+name: Build OneComme template
+
+# aniratch-local（ローカル版）専用。わんコメのテンプレートとして入れる zip を作り、Artifact に置く。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.event.repository.name == 'aniratch-local'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+        cache: npm
+    - run: npm ci
+    - name: Build
+      run: npm run build
+      env:
+        NODE_ENV: production
+        # わんコメのテンプレートフォルダ custom/aniratch に置く前提のパス
+        ROOT: /templates/custom/aniratch/
+        ANIRATCH_ONECOMME: '1'
+    - name: Arrange template folder
+      run: |
+        mkdir -p out
+        cp -r build out/aniratch
+        cp aniratch-extensions/はじめに.txt out/
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Aniratch_onecomme_template
+        path: out
