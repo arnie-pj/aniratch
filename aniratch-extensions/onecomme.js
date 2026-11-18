@@ -181,7 +181,7 @@
                             FIELD: {
                                 type: Scratch.ArgumentType.STRING,
                                 menu: 'fields',
-                                defaultValue: 'price'
+                                defaultValue: 'timestamp'
                             }
                         }
                     },
@@ -193,7 +193,7 @@
                             FLAG: {
                                 type: Scratch.ArgumentType.STRING,
                                 menu: 'flags',
-                                defaultValue: 'gift'
+                                defaultValue: 'owner'
                             }
                         }
                     },
