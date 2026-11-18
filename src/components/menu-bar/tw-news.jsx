@@ -7,7 +7,9 @@ import styles from './tw-news.css';
 const LOCAL_STORAGE_KEY = 'tw:closedNews';
 const NEWS_ID = 'chromium-file-pickers';
 
-const newsAppliesToUser = () => hasChromium157FilePickerBug();
+// Aniratch: TurboWarp 本家のお知らせ（英語）は出さない
+// eslint-disable-next-line no-unused-vars
+const newsAppliesToUser = () => false && hasChromium157FilePickerBug();
 
 const NewsBody = () => (
     <div
